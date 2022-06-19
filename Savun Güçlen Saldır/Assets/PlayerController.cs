@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
          #endregion
 
 
-        //fjdjkfdkhkjh
+        //şskdkewk
         
         #region
         if (Input.GetKeyDown(KeyCode.LeftShift))
