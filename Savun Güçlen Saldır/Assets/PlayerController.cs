@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 inputVector = Vector3.zero;
     public LayerMask mask;
     public Transform cam;
+    
 
     private void Start()
     {
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour
          #endregion
 
 
-        //şskdkewk
+        
         
         #region
         if (Input.GetKeyDown(KeyCode.LeftShift))
