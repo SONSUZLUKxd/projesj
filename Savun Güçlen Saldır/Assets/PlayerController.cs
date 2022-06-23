@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour
     public Vector3 inputVector = Vector3.zero;
     public LayerMask mask;
     public Transform cam;
-    
-    
 
     private void Start()
     {
@@ -45,10 +43,6 @@ public class PlayerController : MonoBehaviour
             controller.Move(move * speed * Time.deltaTime);
             
         }
-        if(controller.velocity.magnitude > 0.9)
-        {
-            cam.position = camShakeObject.position + Random.insideUnitSphere * sallanmaMiktarı;
-        } 
 
         #endregion
 
