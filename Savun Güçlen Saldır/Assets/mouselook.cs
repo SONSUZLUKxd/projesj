@@ -28,8 +28,6 @@ public class mouselook : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-
-
     private void Update()
     {
         float rotX = Input.GetAxisRaw("Mouse X") * sens * Time.deltaTime;

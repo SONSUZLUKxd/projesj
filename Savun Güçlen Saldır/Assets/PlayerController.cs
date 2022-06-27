@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,7 +23,6 @@ public class PlayerController : MonoBehaviour
     public Vector3 inputVector = Vector3.zero;
     public LayerMask mask;
     public Transform cam;
-
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -32,8 +32,12 @@ public class PlayerController : MonoBehaviour
     public float vertical;
     public float sallanmaMiktarı;
     public Transform camShakeObject;
+    public Slider energyBar;
+    public GameObject background;
+    public Rigidbody rb;
     private void Update()
     {
+        Debug.Log(controller.velocity);
         #region Movement
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
@@ -82,22 +86,25 @@ public class PlayerController : MonoBehaviour
             controller.height = originalHeight;
             ground.position = checker2.position;
         }
-         #endregion
+        #endregion
 
-      
-        
-        
-        #region
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        #region Run
+        //bismillah
+        if (Input.GetKey(KeyCode.LeftShift) && energyBar.value >= 1)
         {
             speed = 9.0f;
+            energyBar.value -= 10 * Time.deltaTime;
         }
-
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        else
         {
+            energyBar.value += 6 * Time.deltaTime;
             speed = 5.0f;
         }
-        
+        if(energyBar.value < 8 && Input.GetKey(KeyCode.LeftShift))
+        {
+            background.GetComponent<Image>().color = Color.Lerp(background.GetComponent<Image>().color, Color.red, 5 * Time.deltaTime);
+;       }
+        else { background.GetComponent<Image>().color = Color.Lerp(background.GetComponent<Image>().color, Color.gray, 5 * Time.deltaTime); }
         #endregion
     }
 }
