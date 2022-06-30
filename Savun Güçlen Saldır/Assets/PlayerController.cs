@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 inputVector = Vector3.zero;
     public LayerMask mask;
     public Transform cam;
+    public Animator anim;
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -35,9 +36,11 @@ public class PlayerController : MonoBehaviour
     public Slider energyBar;
     public GameObject background;
     public Rigidbody rb;
+    public float speedd;
     private void Update()
     {
-        Debug.Log(controller.velocity);
+        Debug.Log(speedd);
+        speedd = move.magnitude * 10;
         #region Movement
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
@@ -45,9 +48,10 @@ public class PlayerController : MonoBehaviour
         if (canMove)
         {
             controller.Move(move * speed * Time.deltaTime);
-            
         }
 
+        if(speedd > 1) { anim.SetBool("headbob", true); }
+        else { anim.SetBool("headbob", false); }
         #endregion
 
         #region Jump
